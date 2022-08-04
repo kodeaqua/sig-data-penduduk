@@ -66,7 +66,7 @@ $cari = $mysqli->show();
 
       <?php
       if (isset($_POST['cari'])) {
-        $kec = $_POST['kec'];
+        $kec = $_POST['nama'];
         $koor = $mysqli->koordinat($kec);
       ?>
         location = [
@@ -76,9 +76,10 @@ $cari = $mysqli->show();
               <?php echo $row['Long']; ?>,
               '<?php echo $row['Desa']; ?>',
               '<?php echo $row['Kecamatan']; ?>',
-              <?php echo $row['L']; ?>,
-              <?php echo $row['P']; ?>,
-              <?php echo $row['Jumlah']; ?>],
+              <?php echo $row['Jumlah']; ?>,
+              '<?php echo $row['Tahun']; ?>',
+              '<?php echo $row['Kondisi']; ?>'
+            ],
           <?php
           }
           ?>
@@ -108,9 +109,9 @@ $cari = $mysqli->show();
               infowindow.setContent('<h3>Desa ' + location[i][2] + '<h3>' +
                 '<h6>Kecamatan ' + location[i][3] + '</h6><hr>' +
                 '<h4>Jumlah Penduduk</h4>' +
-                '<p><b>Laki - laki : ' + location[i][4] + '<br>' +
-                'Perempuan : ' + location[i][5] + '<br>' +
-                'Jumlah : ' + location[i][6] + '</b></p>'
+                '<p><b>Jumlah : ' + location[i][4] + '<br>' +
+                'Tahun : ' + location[i][5] + '<br>' +
+                'Status : ' + location[i][6] + '</b></p>'
               );
               infowindow.open(map, marker);
             }
@@ -135,12 +136,12 @@ $cari = $mysqli->show();
     <div class="row">
       <form action="" method="post">
         <div class="col-sm-4">
-          <select class="w3-select w3-card-4" name="kec" required>
+          <select class="w3-select w3-card-4" name="nama" required>
             <option value="">-- Pilih --</option>
             <?php
             while ($row = $cari->fetch_assoc()) {
             ?>
-              <option value=<?php echo $row['kec']; ?>><?php echo ucfirst($row['kec']); ?></option>
+              <option value=<?php echo $row['nama']; ?>><?php echo ucfirst($row['nama']); ?></option>
             <?php
             }
             ?>

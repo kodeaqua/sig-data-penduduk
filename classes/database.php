@@ -18,24 +18,24 @@ class Database{
   }
 
   public function show(){
-    $query = $this->mysqli->query("SELECT kec FROM kab order by kec asc");
+    $query = $this->mysqli->query("SELECT nama FROM kec_dpk order by nama asc");
     return $query;
   }
 
   public function sub_data($kec){
-    $query = "SELECT No as id,Desa,Kecamatan,P,L,Jumlah FROM penduduk WHERE Kecamatan = '$kec'";
+    $query = "SELECT No as id,Desa,Kecamatan,Jumlah,Tahun,Kondisi FROM penduduk WHERE Kecamatan = '$kec'";
     $sql = $this->mysqli->query($query);
     return $sql;
   }
 
   public function edit($id){
-    $query = "SELECT No,Desa,Kecamatan,P,L FROM penduduk WHERE No = '$id'";
+    $query = "SELECT No,Desa,Kecamatan,Tahun,Kondisi FROM penduduk WHERE No = '$id'";
     $sql = $this->mysqli->query($query);
     return $sql;
   }
 
-  public function update($id,$l,$p,$jml){
-    $query = "UPDATE Penduduk set L=$l,P=$p,Jumlah=$jml WHERE No=$id";
+  public function update($id,$jml){
+    $query = "UPDATE Penduduk set Jumlah=$jml WHERE No=$id";
     $sql = $this->mysqli->query($query);
     return $sql;
   }
